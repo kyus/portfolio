@@ -1,4 +1,5 @@
-import {MouseEventHandler, useCallback, useEffect, useRef, useState} from "react";
+import {MouseEventHandler, TouchEventHandler, useCallback, useEffect, useRef, useState} from "react";
+import {isMobile} from 'react-device-detect';
 import "@lottiefiles/lottie-player";
 
 function Move_apeach ({width=100}) {
@@ -56,7 +57,7 @@ function Bye_apeach ({width = 100}) {
 }
 
 function Apeach ({isLogin}:{isLogin:boolean}) {
-  const apeachSize = 200;
+  const apeachSize = isMobile ? 100 : 200;
   const [move, setMove] = useState(true);
   const [ula, setUla] = useState(false);
   const [bye, setBye] = useState(false);
@@ -109,6 +110,7 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
       setTimeout(() => setUla(false), 50);
     }, 5400);
   },[ula]);
+
   const mouseMoveEvent:MouseEventHandler<HTMLDivElement> = useCallback((e) => {
     if (!mouseAction) return false;
     setDragPos({x:e.clientX-(apeachSize/2), y:e.clientY-(apeachSize/2)});
@@ -126,6 +128,7 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
     setposX(Math.floor((x-apeachSize/2)*100/window.document.documentElement.clientWidth));
     setposY(window.document.documentElement.clientHeight - y - apeachSize/2);
   }, [posXUpdate]);
+
   const callByeAction = () => {
     setMove(false);
     setUla(false);
@@ -167,8 +170,8 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
         mouseAction
           ? <Drag_apeach width={apeachSize/1.2}/>
           : <>
-            {move &&<Move_apeach width={apeachSize}/>}
-            {ula &&<UlaUla_apeach width={apeachSize}/>}
+            {move && <Move_apeach width={apeachSize}/>}
+            {ula && <UlaUla_apeach width={apeachSize}/>}
             {bye && <Bye_apeach width={apeachSize}/>}
           </>
       }
