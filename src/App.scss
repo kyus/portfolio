@@ -110,3 +110,14 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 479px){
+  html {overscroll-behavior-y: none;}
+  .body {overflow: hidden;overscroll-behavior-y: none;}
+  .character-wrapper {
+    .bubble {
+      top: -100px;
+      left: 0;
+    }
+  }
+}
