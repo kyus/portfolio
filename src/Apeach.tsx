@@ -2,7 +2,7 @@ import {MouseEventHandler, TouchEventHandler, useCallback, useEffect, useRef, us
 import {isMobile} from 'react-device-detect';
 import "@lottiefiles/lottie-player";
 
-function Move_apeach ({width=100}) {
+function MoveApeach ({width=100}) {
   return (
     <div className={"apeach"}>
       <lottie-player
@@ -16,7 +16,7 @@ function Move_apeach ({width=100}) {
   )
 }
 
-function UlaUla_apeach ({width = 100}) {
+function UlaUlaApeach ({width = 100}) {
   return (
     <div className={"apeach"}>
       <lottie-player
@@ -29,9 +29,9 @@ function UlaUla_apeach ({width = 100}) {
   )
 }
 
-function Drag_apeach ({width = 100}) {
+function DragApeach ({width = 100}) {
   return (
-    <div className={"apeach"} style={{transform: "translate(20px, 20px)"}}>
+    <div className={"apeach"} style={{transform: "translate(20px, 10px)"}}>
       <lottie-player
         autoplay
         loop
@@ -43,7 +43,7 @@ function Drag_apeach ({width = 100}) {
   )
 }
 
-function Bye_apeach ({width = 100}) {
+function ByeApeach ({width = 100}) {
   return (
     <div className={"apeach"}>
       <lottie-player
@@ -67,8 +67,20 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
   const [direction, setDirection] = useState('left');
   const [mouseAction, setMouseAction] = useState(false);
   const moveInterval = useRef<any>(null);
+
+  const ulaula = useCallback(() => {
+    if (ula) {
+      return false;
+    }
+    setUla(true);
+    setTimeout(() => setMove(false), 50);
+    setTimeout(() => {
+      setMove(true);
+      setTimeout(() => setUla(false), 50);
+    }, 5400);
+  },[ula]);
+
   const posXUpdate = useCallback(() => {
-    console.log('posX', posX, bye, ula);
     if (ula || bye) {
       return false;
     }
@@ -97,29 +109,18 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
     setposX(nextPosX);
     _setDirection(nextPosX);
   }, [
-    posX, direction, ula, mouseAction
+    posX, direction, ula, bye, ulaula
   ]);
-  const ulaula = useCallback(() => {
-    if (ula) {
-      return false;
-    }
-    setUla(true);
-    setTimeout(() => setMove(false), 50);
-    setTimeout(() => {
-      setMove(true);
-      setTimeout(() => setUla(false), 50);
-    }, 5400);
-  },[ula]);
 
   const mouseMoveEvent:MouseEventHandler<HTMLDivElement> = useCallback((e) => {
     if (!mouseAction) return false;
     setDragPos({x:e.clientX-(apeachSize/2), y:e.clientY-(apeachSize/2)});
-  },[mouseAction]);
+  },[mouseAction, apeachSize]);
   const mouseDownEvent:MouseEventHandler<HTMLDivElement> = useCallback((e) => {
     setMouseAction(true);
     setDragPos({x:e.clientX-(apeachSize/2), y:e.clientY-(apeachSize/2)});
     clearInterval(moveInterval.current);
-  }, []);
+  }, [apeachSize]);
   const mouseUpEvent:MouseEventHandler<HTMLDivElement> = useCallback((e) => {
     setMouseAction(false);
     const {clientX:x, clientY:y} = e;
@@ -127,7 +128,7 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
     setUla(false);
     setposX(Math.floor((x-apeachSize/2)*100/window.document.documentElement.clientWidth));
     setposY(window.document.documentElement.clientHeight - y - apeachSize/2);
-  }, [posXUpdate]);
+  }, [apeachSize]);
 
   const callByeAction = () => {
     setMove(false);
@@ -145,7 +146,7 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
       moveInterval.current = setInterval(posXUpdate, 100);
     }
     return () => clearInterval(moveInterval.current);
-  }, [posXUpdate]);
+  }, [posXUpdate, moveInterval, mouseAction]);
   useEffect(() => {
     if (isLogin) {
       callByeAction();
@@ -168,11 +169,11 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
     >
       {
         mouseAction
-          ? <Drag_apeach width={apeachSize/1.2}/>
+          ? <DragApeach width={apeachSize/1.1}/>
           : <>
-            {move && <Move_apeach width={apeachSize}/>}
-            {ula && <UlaUla_apeach width={apeachSize}/>}
-            {bye && <Bye_apeach width={apeachSize}/>}
+            {move && <MoveApeach width={apeachSize}/>}
+            {ula && <UlaUlaApeach width={apeachSize}/>}
+            {bye && <ByeApeach width={apeachSize}/>}
           </>
       }
     </div>
