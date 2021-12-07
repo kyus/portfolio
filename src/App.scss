@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+}
+
+.body {
+  display: flex;
+  background-color: #282c34;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  width: 220px;
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #a55555;
+}
+.character-wrapper {
+  margin-bottom: 10px;
+  position: relative;
+  .bubble {
+    transform: translateY(30px);
+    opacity: 0;
+    position: absolute;
+    width: 70%;
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+    background: #fff;
+    padding: 20px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    animation: .3s popup forwards;
+    animation-delay: 1s;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -10px;
+      left : 10px;
+      transform: rotate(15deg);
+      width: 0;
+      height: 0;
+      border: 10px solid #fff;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+
+    }
+  }
+}
+.input-wrapper {
+  width: 200px;
+  margin-bottom: 10px;
+  input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    padding: 0 10px;
+    border: none;
+    background: #fff;
+  }
+}
+.apeach-wrapper {
+  position: fixed;
+  bottom: 0;
+  left :100vw;
+  transition: all .1s ease-in-out;
+  transform-origin: center;
+  .apeach {position: absolute; bottom: 0; left: 0;}
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes popup {
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
