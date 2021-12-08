@@ -53,7 +53,12 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-
+  }
+  &.right:after {
+    transform: rotate(172deg);
+  }
+  &.no-delay {
+    animation-delay: 0s;
   }
 }
 .character-wrapper {
@@ -99,7 +104,7 @@
   backdrop-filter: blur(30px);
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -126,7 +131,7 @@
   transform: scale(0) translateY(100px);
   opacity: 0;
   animation: popup 3s forwards;
-  z-index: 2;
+  z-index: 3;
   .bubble {
     font-size: 12px;
     width: 150px;
@@ -136,9 +141,6 @@
     transform: translateY(-40px);
     animation: popup 1s forwards;
     animation-delay: 2s;
-    &.right:after {
-      transform: rotate(172deg);
-    }
   }
 }
 

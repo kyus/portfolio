@@ -10,6 +10,7 @@ import CommandBall from "./component/CommandBall";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [apeachSize, setApeachSize] = useState(200);
+  const [action, setAction] = useState('normal');
 
   return (
     <div className="App">
@@ -27,8 +28,12 @@ function App() {
             : <Login setIsLogin={setIsLogin} />
         }
       </section>
-      <Apeach isLogin={isLogin} size={apeachSize} />
-      {isLogin && <CommandBall setSize={setApeachSize} />}
+      <Apeach
+        isLogin={isLogin}
+        size={apeachSize}
+        action={action}
+      />
+      {isLogin && <CommandBall setSize={setApeachSize} setAction={setAction} />}
     </div>
   );
 }

@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 
-function CommandBall({setSize}:{setSize:Dispatch<number>}) {
+function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:Dispatch<string>}) {
   const [editMode, setEditMode] = useState(false);
   const [value, setValue] = useState('');
   const [bubble, setBubble] = useState(true);
@@ -20,8 +20,16 @@ function CommandBall({setSize}:{setSize:Dispatch<number>}) {
   ]);
   const iconRef = useRef<any>();
   const historyRef = useRef<HTMLDivElement>(null);
+  const hideTooltip = useCallback(() => {
+    setEditMode(false);
+    iconRef.current.stop();
+    iconRef.current.play();
+  },[]);
   const tooltip = () => {
-    if (editMode) return setEditMode(false);
+    if (editMode) {
+      hideTooltip();
+      return;
+    }
     setBubble(false);
     iconRef.current.stop();
     iconRef.current.play();
@@ -42,7 +50,7 @@ function CommandBall({setSize}:{setSize:Dispatch<number>}) {
       case "quit":
       case "exit":
         if (cmdMode === '$') {
-          setEditMode(false);
+          hideTooltip();
         } else {
           setCmdMode('$');
         }
@@ -70,13 +78,34 @@ function CommandBall({setSize}:{setSize:Dispatch<number>}) {
       return setHistory([...history, '숫자를 입력해서 어피치 크기를 조절하세요. (나가시려면 exit 입력)']);
     }
     if (method === 'cmd') {
-      return setHistory([...history, '행동 양식을 입력하세요.준비중..(나가시려면 exit 입력)']);
+      return setHistory([
+        ...history,
+        '행동 양식을 입력하세요.',
+        '-------------------------',
+        '위치로 : 초기포지션으로',
+        '울라울라 : 울라울라 포즈',
+        '안녕? : 인사 포즈',
+        '가만히 있어 : 가만히 벌받기(미구현)',
+        '-------------------------',
+        '(나가시려면 exit 입력)'
+      ]);
     }
     if (cmdMode === '$') {
       setHistory([...history, value]);
     }
     if (cmdMode === 'size>') {
-      setSize(parseInt(value));
+      const newSize = isNaN(parseInt(value)) ? 200 : parseInt(value);
+      setSize(newSize);
+    }
+    if (cmdMode === 'cmd>') {
+      switch(value) {
+        case "위치로": setAction('init'); break;
+        case "울라울라": setAction('ula'); break;
+        case "안녕":
+        case "안녕?":
+          setAction('bye'); break;
+        default: setAction(value);
+      }
     }
   }, [value, history, historyRef, cmdMode]);
   const getHistoryContents = useCallback(() => {

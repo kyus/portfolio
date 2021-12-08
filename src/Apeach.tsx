@@ -56,7 +56,7 @@ function ByeApeach ({width = 100}) {
   )
 }
 
-function Apeach ({isLogin, size}:{isLogin:boolean; size: number}) {
+function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:string}) {
   const [apeachSize, setApeachSize] = useState(0);
   const [move, setMove] = useState(true);
   const [ula, setUla] = useState(false);
@@ -66,8 +66,19 @@ function Apeach ({isLogin, size}:{isLogin:boolean; size: number}) {
   const [dragPos, setDragPos] = useState({x:0,y:0});
   const [direction, setDirection] = useState('left');
   const [mouseAction, setMouseAction] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [msgView, setMsgView] = useState(false);
   const moveInterval = useRef<any>(null);
+  const msgTimer = useRef<any>(null);
 
+  const init = useCallback(() => {
+    setMove(true);
+    setUla(false);
+    setBye(false);
+    setposX(100);
+    setposY(0);
+    setMouseAction(false);
+  }, []);
   const ulaula = useCallback(() => {
     if (ula) {
       return false;
@@ -130,6 +141,21 @@ function Apeach ({isLogin, size}:{isLogin:boolean; size: number}) {
     setposY(window.document.documentElement.clientHeight - y - apeachSize/2);
   }, [apeachSize]);
 
+  const touchMoveEvent:TouchEventHandler<HTMLDivElement> = useCallback(e => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMouseAction(true);
+    setDragPos({x:e.touches[0].clientX-(apeachSize/2), y: e.touches[0].clientY-(apeachSize/2)});
+  }, [apeachSize]);
+  const touchEndEvent:TouchEventHandler<HTMLDivElement> = useCallback(e => {
+    setMouseAction(false);
+    const {x, y} = dragPos;
+    setMove(true);
+    setUla(false);
+    setposX(Math.floor((x-(apeachSize/4))*100/window.document.documentElement.clientWidth));
+    setposY(window.document.documentElement.clientHeight - y - apeachSize);
+  }, [dragPos, apeachSize]);
+
   const callByeAction = () => {
     setMove(false);
     setUla(false);
@@ -159,31 +185,64 @@ function Apeach ({isLogin, size}:{isLogin:boolean; size: number}) {
       setApeachSize(size);
     }
   }, [size]);
+  useEffect(() => {
+    setMsg('');
+    setMsgView(false);
+    switch(action) {
+      case "ula": ulaula(); break;
+      case "bye": callByeAction(); break;
+      case "init": init(); break;
+      default:
+        setMsgView(true);
+        setMsg(`${action}? 내가 모르는 말이야..`);
+        clearTimeout(msgTimer.current);
+        msgTimer.current = setTimeout(() => {
+          setMsgView(false);
+          setMsg('');
+        }, 10000);
+    }
+  }, [action]);
 
   return (
-    <div className={"apeach-wrapper"} style={{
-      width: apeachSize,
-      height: apeachSize,
-      left: (mouseAction) ? dragPos.x : `${posX}vw`,
-      transform: `${direction === 'left' ? '': 'rotate3d(0,1,0, 180deg)'}`,
-      top: (mouseAction) ? dragPos.y : 'auto',
-      bottom: (mouseAction) ? 'auto' : posY,
-      transition: (mouseAction) ? 'none' : 'all .1s ease-in-out',
-    }}
-         onMouseDown={mouseDownEvent}
-         onMouseUp={mouseUpEvent}
-         onMouseMove={mouseMoveEvent}
-    >
+    <>
       {
-        mouseAction
-          ? <DragApeach width={apeachSize/1.1}/>
-          : <>
-            {move && <MoveApeach width={apeachSize}/>}
-            {ula && <UlaUlaApeach width={apeachSize}/>}
-            {bye && <ByeApeach width={apeachSize}/>}
-          </>
+        msgView &&
+        <div className={"bubble right no-delay"} style={{
+          width: 300,
+          left: (mouseAction) ? dragPos.x : `${posX}vw`,
+          transform: `${direction === 'left' ? '' : 'rotate3d(0,1,0, 180deg)'}`,
+          top: (mouseAction) ? dragPos.y + apeachSize : 'auto',
+          bottom: (mouseAction) ? 'auto' : posY + apeachSize,
+        }}>{msg}</div>
       }
-    </div>
+      <div className={"apeach-wrapper"} style={{
+        width: apeachSize,
+        height: apeachSize,
+        left: (mouseAction) ? dragPos.x : `${posX}vw`,
+        transform: `${direction === 'left' ? '': 'rotate3d(0,1,0, 180deg)'}`,
+        top: (mouseAction) ? dragPos.y : 'auto',
+        bottom: (mouseAction) ? 'auto' : posY,
+        transition: (mouseAction) ? 'none' : 'all .1s ease-in-out',
+      }}
+           onMouseDown={mouseDownEvent}
+           onMouseUp={mouseUpEvent}
+           onMouseMove={mouseMoveEvent}
+           onTouchEnd={touchEndEvent}
+           onTouchMove={touchMoveEvent}
+      >
+
+        {
+          mouseAction
+            ? <DragApeach width={apeachSize/1.1}/>
+            : <>
+              {move && <MoveApeach width={apeachSize} />}
+              {ula && <UlaUlaApeach width={apeachSize} />}
+              {bye && <ByeApeach width={apeachSize} />}
+            </>
+        }
+      </div>
+    </>
+
   )
 }
 
