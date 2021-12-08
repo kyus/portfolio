@@ -15,6 +15,7 @@
       image: url("img/bg.svg");
       size: cover;
     }
+    opacity: 0;
     animation: popup .5s forwards;
   }
 }
@@ -95,6 +96,14 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.nav-wrapper {
+  width: 80%;
+  display: flex;
+  gap: 20px;
+  .nav {
   }
 }
 
