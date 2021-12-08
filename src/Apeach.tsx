@@ -56,8 +56,8 @@ function ByeApeach ({width = 100}) {
   )
 }
 
-function Apeach ({isLogin}:{isLogin:boolean}) {
-  const apeachSize = isMobile ? 100 : 200;
+function Apeach ({isLogin, size}:{isLogin:boolean; size: number}) {
+  const [apeachSize, setApeachSize] = useState(0);
   const [move, setMove] = useState(true);
   const [ula, setUla] = useState(false);
   const [bye, setBye] = useState(false);
@@ -81,7 +81,7 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
   },[ula]);
 
   const posXUpdate = useCallback(() => {
-    if (ula || bye) {
+    if (!move) {
       return false;
     }
     const _getNextPosition = (direction:string, posX:number) => {
@@ -152,6 +152,13 @@ function Apeach ({isLogin}:{isLogin:boolean}) {
       callByeAction();
     }
   }, [isLogin]);
+  useEffect(() => {
+    if (isMobile) {
+      setApeachSize(size/2);
+    } else {
+      setApeachSize(size);
+    }
+  }, [size]);
 
   return (
     <div className={"apeach-wrapper"} style={{

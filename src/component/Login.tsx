@@ -3,7 +3,7 @@ import React, {Dispatch, KeyboardEventHandler, useCallback, useRef, useState} fr
 function Login({setIsLogin}:{setIsLogin:Dispatch<boolean>}) {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [msg, setMsg] = useState('맞춰바여');
+  const [msg, setMsg] = useState('맞춰보세요.');
   const idRef = useRef<HTMLInputElement>(null);
   const pwRef = useRef<HTMLInputElement>(null);
 

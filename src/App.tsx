@@ -5,9 +5,11 @@ import '@dotlottie/player-component';
 import Apeach from "./Apeach";
 import Login from "./component/Login";
 import Main from "./component/Main";
+import CommandBall from "./component/CommandBall";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const [apeachSize, setApeachSize] = useState(200);
 
   return (
     <div className="App">
@@ -25,7 +27,8 @@ function App() {
             : <Login setIsLogin={setIsLogin} />
         }
       </section>
-      <Apeach isLogin={isLogin} />
+      <Apeach isLogin={isLogin} size={apeachSize} />
+      {isLogin && <CommandBall setSize={setApeachSize} />}
     </div>
   );
 }
