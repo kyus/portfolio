@@ -18,7 +18,8 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
     '어피치명령어',
     '도움말은 ? 또는 help 입력 후 [enter]',
   ]);
-  const iconRef = useRef<any>();
+  const iconRef = useRef<any>(null);
+  const cmdRef = useRef<any>(null);
   const historyRef = useRef<HTMLDivElement>(null);
   const hideTooltip = useCallback(() => {
     setEditMode(false);
@@ -99,6 +100,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
     }
     if (cmdMode === 'cmd>') {
       switch(value) {
+        case "exit": break;
         case "위치로": setAction('init'); break;
         case "울라울라": setAction('ula'); break;
         case "안녕":
@@ -122,6 +124,11 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
       iconRef.current?.play();
     }, 1000);
   }, []);
+  useEffect(() => {
+    if (editMode) {
+      cmdRef.current.focus();
+    }
+  }, [editMode]);
   useEffect(() => {
     if (historyRef.current) {
       const {scrollHeight, clientHeight} = historyRef.current;
@@ -149,6 +156,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
           <div className={"input-wrapper"}>
             <div className={"console"}>{cmdMode}</div>
             <input
+              ref={cmdRef}
               type={"text"}
               className={"input"}
               value={value}
