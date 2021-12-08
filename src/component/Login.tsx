@@ -59,6 +59,7 @@ function Login({setIsLogin}:{setIsLogin:Dispatch<boolean>}) {
         <input
           ref={idRef}
           type={"text"}
+          className={"input"}
           value={id}
           placeholder={"input id..."}
           onChange={handleInput('id')}
@@ -68,6 +69,7 @@ function Login({setIsLogin}:{setIsLogin:Dispatch<boolean>}) {
         <input
           ref={pwRef}
           type={"password"}
+          className={"input"}
           value={pw}
           placeholder={"input password..."}
           onChange={handleInput('pw')}
