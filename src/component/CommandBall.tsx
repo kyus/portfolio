@@ -59,7 +59,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
         return 'normal';
       default: return false;
     }
-  }, [value, cmdMode]);
+  }, [value, cmdMode, hideTooltip]);
   const changeValue:ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
     setValue(e.target.value);
   }, []);
@@ -115,7 +115,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
       clearTimeout(actionRef.current);
       actionRef.current = setTimeout(() => setAction('normal'), 1000);
     }
-  }, [value, history, historyRef, cmdMode]);
+  }, [value, history, cmdMode, _setMethod, setAction, setSize]);
   const getHistoryContents = useCallback(() => {
     return (<div>
       {

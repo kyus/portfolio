@@ -120,7 +120,7 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
     setposX(nextPosX);
     _setDirection(nextPosX);
   }, [
-    posX, direction, ula, bye, ulaula
+    posX, direction, ulaula, move
   ]);
 
   const mouseMoveEvent:MouseEventHandler<HTMLDivElement> = useCallback((e) => {
@@ -213,7 +213,7 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
           setMsg('');
         }, 10000);
     }
-  }, [action]);
+  }, [action, init, ulaula]);
 
   return (
     <>
