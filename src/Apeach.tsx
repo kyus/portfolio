@@ -186,12 +186,24 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
     }
   }, [size]);
   useEffect(() => {
-    setMsg('');
-    setMsgView(false);
+    if (action !== 'normal') {
+      setMsg('');
+      setMsgView(false);
+    }
     switch(action) {
+      case "normal": break;
       case "ula": ulaula(); break;
       case "bye": callByeAction(); break;
       case "init": init(); break;
+      case "stop":
+        setMsgView(true);
+        setMsg(`내가 왜? 사랑은 움직이는거야!`);
+        clearTimeout(msgTimer.current);
+        msgTimer.current = setTimeout(() => {
+          setMsgView(false);
+          setMsg('');
+        }, 10000);
+        break;
       default:
         setMsgView(true);
         setMsg(`${action}? 내가 모르는 말이야..`);

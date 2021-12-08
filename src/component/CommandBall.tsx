@@ -20,6 +20,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
   ]);
   const iconRef = useRef<any>(null);
   const cmdRef = useRef<any>(null);
+  const actionRef = useRef<any>(null);
   const historyRef = useRef<HTMLDivElement>(null);
   const hideTooltip = useCallback(() => {
     setEditMode(false);
@@ -106,8 +107,13 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
         case "안녕":
         case "안녕?":
           setAction('bye'); break;
+        case "가만히":
+        case "가만히 있어":
+          setAction('stop'); break;
         default: setAction(value);
       }
+      clearTimeout(actionRef.current);
+      actionRef.current = setTimeout(() => setAction('normal'), 1000);
     }
   }, [value, history, historyRef, cmdMode]);
   const getHistoryContents = useCallback(() => {
