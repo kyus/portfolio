@@ -51,7 +51,7 @@ function App() {
       <section className={classNames("body", {isLogin})}>
         {
           isLogin
-            ? <Main />
+            ? <Main setAction={setAction} />
             : <Login setIsLogin={setIsLogin} />
         }
       </section>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Dispatch, useEffect} from "react";
 import {FaUserSecret} from '@react-icons/all-files/fa/FaUserSecret';
 import {DiReact} from '@react-icons/all-files/di/DiReact';
 import {DiJsBadge} from '@react-icons/all-files/di/DiJsBadge';
@@ -12,10 +12,15 @@ import {SiElectron} from '@react-icons/all-files/si/SiElectron';
 import {SiDocker} from '@react-icons/all-files/si/SiDocker';
 import {SiNginx} from '@react-icons/all-files/si/SiNginx';
 
-function About() {
+function About({setAction}:{setAction:Dispatch<string>}) {
   const link = (url:string) => () => {
     window.open(url, '_blank');
   }
+
+  useEffect(() => {
+    setAction('hi');
+    setTimeout(() => setAction('normal'), 30);
+  }, []);
   return (
     <div className={"card-wrapper"}>
       <div className={"card-header"}>

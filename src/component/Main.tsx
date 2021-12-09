@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, {Dispatch, useState} from "react";
 import {Route, Routes} from "react-router-dom";
 import Portfolio from "./Portfolio";
 import About from "./About";
 
-function Main() {
+function Main({setAction}:{setAction:Dispatch<string>}) {
   return (
     <Routes>
       <Route path={"/*"} element={<Portfolio />} />
-      <Route path={"/about"} element={<About />} />
+      <Route path={"/about"} element={<About setAction={setAction} />} />
     </Routes>
   )
 }

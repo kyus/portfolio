@@ -204,6 +204,16 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
           setMsg('');
         }, 10000);
         break;
+      case "hi":
+        setMsgView(true);
+        setMsg('안녕? 만나서 반가워^^');
+        callByeAction();
+        clearTimeout(msgTimer.current);
+        msgTimer.current = setTimeout(() => {
+          setMsgView(false);
+          setMsg('');
+        }, 3000);
+        break;
       default:
         setMsgView(true);
         setMsg(`${action}? 내가 모르는 말이야..`);
