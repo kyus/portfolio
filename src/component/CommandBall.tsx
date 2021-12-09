@@ -96,7 +96,8 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
       setHistory([...history, value]);
     }
     if (cmdMode === 'size>') {
-      const newSize = isNaN(parseInt(value)) ? 200 : parseInt(value);
+      const newSize = parseInt(value);
+      if (isNaN(newSize)) return;
       setSize(newSize);
     }
     if (cmdMode === 'cmd>') {
