@@ -4,7 +4,7 @@ import classNames from "classnames";
 import '@dotlottie/player-component';
 import {Link, useLocation} from "react-router-dom";
 import {AiOutlineGithub} from '@react-icons/all-files/ai/AiOutlineGithub';
-import {AiOutlineMessage} from '@react-icons/all-files/ai/AiOutlineMessage';
+import {AiOutlineLogout} from '@react-icons/all-files/ai/AiOutlineLogout';
 import {FaDocker} from '@react-icons/all-files/fa/FaDocker';
 import {RiUser5Line} from '@react-icons/all-files/ri/RiUser5Line';
 import Apeach from "./Apeach";
@@ -38,11 +38,14 @@ function App() {
             <div className={"nav-right"}>
               <a className={"nav"} href={"https://github.com/kyus"} target={"_blank"}>
                 <AiOutlineGithub />
-                <div>git</div>
+                <div>github</div>
               </a>
             </div>
           </nav>
-          <div onClick={()=> setIsLogin(false)} className={"btn"}>logout</div>
+          <div onClick={()=> setIsLogin(false)} className={"btn"}>
+            <AiOutlineLogout />
+            <div>logout</div>
+          </div>
         </header>
       }
       <section className={classNames("body", {isLogin})}>

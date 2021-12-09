@@ -27,6 +27,10 @@
   cursor: pointer;
   border-radius: 4px;
   background: #a55555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .bubble {
@@ -241,18 +245,23 @@
     color: #043832;
     text-align: left;
     line-height: 24px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: popup .5s forwards;
+    animation-delay: .3s;
     .image-wrapper {
-      width: 120px;
-      height: 120px;
-      float: left;
+      width: 180px;
+      height: 180px;
+      float: right;
       padding: 20px;
       img {
         cursor: pointer;
         width: 100%;
         object-fit: cover;
-        border-radius: 50%;
         overflow: hidden;
         transition: all .3s ease-in-out;
+        animation: rounded .5s forwards;
+        animation-delay: .5s;
       }
     }
   }
@@ -278,6 +287,11 @@
   }
 }
 
+@keyframes rounded {
+  to {
+    border-radius: 50%;
+  }
+}
 @keyframes popup {
   to {
     transform: translate(0, 0) scale(1);
