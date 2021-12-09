@@ -8,6 +8,9 @@ import React, {
   KeyboardEventHandler
 } from "react";
 import classNames from "classnames";
+import {GiResize} from '@react-icons/all-files/gi/GiResize';
+import {DiTerminal} from '@react-icons/all-files/di/DiTerminal';
+import {BiJoystick} from '@react-icons/all-files/bi/BiJoystick';
 
 function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:Dispatch<string>}) {
   const [editMode, setEditMode] = useState(false);
@@ -161,7 +164,12 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
             {getHistoryContents()}
           </div>
           <div className={"input-wrapper"}>
-            <div className={"console"}>{cmdMode}</div>
+            <div className={"console"}>
+              {cmdMode === 'size>' && <GiResize />}
+              {cmdMode === 'cmd>' && <DiTerminal />}
+              {(cmdMode !== 'size>' && cmdMode !== 'cmd>') && <BiJoystick size={20} />}
+              {cmdMode}
+            </div>
             <input
               ref={cmdRef}
               type={"text"}
