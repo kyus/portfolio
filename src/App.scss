@@ -102,8 +102,23 @@
 .nav-wrapper {
   width: 80%;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  .nav-left {
+    display: flex;
+    gap: 50px;
+    padding:0 20px;
+  }
   .nav {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    &.active {
+      font-weight: 700;
+    }
   }
 }
 
@@ -181,6 +196,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    .console {
+      width: 50px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
   }
   .input {
     font-size: 16px;
@@ -199,6 +220,55 @@
   color: #61dafb;
 }
 
+.card-wrapper {
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80vw;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(40px);
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.3);
+  line-height: 30px;
+  transform: translateY(100px) scale(0);
+  opacity: 0;
+  animation: popup .5s forwards;
+  .card-header {
+    text-align: left;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #282c34;
+  }
+  .content {
+    color: #043832;
+    text-align: left;
+    line-height: 24px;
+    .image-wrapper {
+      width: 120px;
+      height: 120px;
+      float: left;
+      padding: 20px;
+      img {
+        cursor: pointer;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
+  .bubble {
+    position: relative;
+    animation: popup2 .5s forwards;
+    animation-delay: .5s;
+  }
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  * {cursor: pointer; transition: transform .4s ease-in-out; transform-origin: center}
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -214,15 +284,54 @@
     opacity: 1;
   }
 }
+@keyframes popup2 {
+  to {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+}
+
+@media (hover:hover) {
+  .icon-wrapper *:hover {
+    color: #6f30ee;
+    transform: scale(1.1);
+  }
+  .card-wrapper {
+    .image-wrapper {
+      img:hover {
+        transform: rotate(360deg);
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 479px){
   html {overscroll-behavior-y: none;}
   .body {overflow: hidden;overscroll-behavior-y: none;}
   .input {font-size: 16px;}
+  .nav-wrapper {display: none}
   .character-wrapper {
     .bubble {
       top: -100px;
       left: 0;
+    }
+  }
+  .card-wrapper {
+    height: 70vh;
+    overflow: {
+      x:hidden;
+      y:scroll;
+    }
+    .content {
+      .image-wrapper {
+        display: block;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        float: none;
+        img {width: 150px}
+      }
     }
   }
 }
