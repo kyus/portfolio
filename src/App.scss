@@ -4,6 +4,9 @@
 
 .body {
   display: flex;
+  position: fixed;
+  left:0;
+  top:0;
   background-color: #282c34;
   width: 100vw;
   height: 100vh;
@@ -15,8 +18,8 @@
       image: url("img/bg.svg");
       size: cover;
     }
-    opacity: 0;
     animation: popup .5s forwards;
+    z-index: -1;
   }
 }
 .btn {
