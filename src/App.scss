@@ -248,7 +248,10 @@
   animation: popup .5s forwards;
   .history {
     height: calc(100% - 50px);
-    overflow: scroll;
+    overflow: {
+      x: hidden;
+      y: scroll;
+    };
     &::-webkit-scrollbar {opacity: 0;}
   }
   .input-wrapper {
@@ -428,7 +431,7 @@
     display: inline-block;
     background: #fff;
     padding: 0;
-    width: 300px;
+    width: 250px;
     height: calc(100% - 50px);
     overflow: hidden;
     margin: 100px 10px 0;
@@ -440,9 +443,10 @@
       fill-mode: forwards;
     };
     .img-wrapper {
-      max-width: 300px;
-      max-height: 150px;
+      max-width: 250px;
+      max-height: calc( 100% - 80px);
       position: relative;
+      overflow: hidden;
       img {
         width: 100%;
         height: 150px;
