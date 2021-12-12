@@ -249,6 +249,7 @@
   .history {
     height: calc(100% - 50px);
     overflow: scroll;
+    &::-webkit-scrollbar {opacity: 0;}
   }
   .input-wrapper {
     margin: 0;
@@ -408,6 +409,7 @@
       x: scroll;
       y: hidden;
     };
+    &::-webkit-scrollbar {opacity: 0}
     text-align: left;
     .project-title {
       color: #fff;

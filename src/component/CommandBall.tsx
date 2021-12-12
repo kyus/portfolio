@@ -149,7 +149,7 @@ function CommandBall({setSize, setAction}:{setSize:Dispatch<number>; setAction:D
     <div className={classNames("command-ball", {editMode})}>
       <div onClick={tooltip}>
         {bubble && <div className={"bubble right"}>어피치가 신경쓰이나요?<br />저를 누르세요.</div>}
-        {editMode && <div className={"bubble"}>어피치에게 명령을 내려보세요!<br />종료하려면 저를 클릭해주세요.</div>}
+        {editMode && <div className={"bubble"} style={{whiteSpace: "nowrap"}}>어피치에게 명령을 내려보세요!<br />종료하려면 저를 클릭해주세요.</div>}
         <lottie-player
           ref={iconRef}
           mode={"normal"}
