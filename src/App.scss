@@ -547,4 +547,19 @@
       }
     }
   }
+  .portfolio-wrapper {
+    .thumb-wrapper {
+      .thumb-info {
+        width: 100%;
+        line-height: 20px;
+        .thumb-title {font-size: 18px;}
+        .thumb-content {font-size: 14px;}
+      }
+      .thumb-bg-wrapper {
+        .bg-color {
+          background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
+        }
+      }
+    }
+  }
 }

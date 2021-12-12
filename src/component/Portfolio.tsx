@@ -28,6 +28,7 @@ function ProjectList({title, list, toggle, openDetail}:{
           key={k}
           className={"card-wrapper"}
           onMouseEnter={() => toggle(p)}
+          onTouchStart={() => toggle(p)}
           onClick={() => openDetail(p)}>
           <div className={"img-wrapper"}>
             <img src={p.src} alt={p.name}/>
