@@ -24,8 +24,10 @@ function Login({setIsLogin}:{setIsLogin:Dispatch<boolean>}) {
   const onLogin = useCallback(() => {
     if (id === 'kyus' && pw === '1234') {
       setIsLogin(true);
+      localStorage.setItem('isLogin', 'yes');
     } else {
       setIsLogin(false);
+      localStorage.setItem('isLogin', 'no');
       setMsg('로그인 정보가 틀려요!');
       setTimeout(() => setMsg('id는 kyus, 비번은 1234 입니다..'), 1000);
     }

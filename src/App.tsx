@@ -1,5 +1,5 @@
 import './App.scss';
-import {useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import classNames from "classnames";
 import '@dotlottie/player-component';
 import {Link, useLocation} from "react-router-dom";
@@ -17,6 +17,24 @@ function App() {
   const [apeachSize, setApeachSize] = useState(200);
   const [action, setAction] = useState('normal');
   const {pathname} = useLocation();
+
+  const logout = useCallback(() => {
+    setIsLogin(false);
+    localStorage.setItem('isLogin', 'no');
+  }, []);
+
+  useEffect(() => {
+    const loginState = localStorage.getItem("isLogin");
+    console.log('local', loginState);
+    if (loginState === 'yes') {
+      setIsLogin(true);
+    } else {
+      setAction('intro');
+      setTimeout(() => {
+        setAction('normal');
+      }, 0);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -42,7 +60,7 @@ function App() {
               </a>
             </div>
           </nav>
-          <div onClick={()=> setIsLogin(false)} className={"btn"}>
+          <div onClick={logout} className={"btn"}>
             <AiOutlineLogout />
             <div>logout</div>
           </div>
