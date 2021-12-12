@@ -167,6 +167,16 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
     }, 3000);
   }
 
+  const messageTrigger = (msg:string, duration:number) => {
+    setMsgView(true);
+    setMsg(msg);
+    clearTimeout(msgTimer.current);
+    msgTimer.current = setTimeout(() => {
+      setMsgView(false);
+      setMsg('');
+    }, duration);
+  }
+
   useEffect(() => {
     if (!mouseAction) {
       moveInterval.current = setInterval(posXUpdate, 100);
@@ -192,36 +202,21 @@ function Apeach ({isLogin, size, action}:{isLogin:boolean; size: number; action:
     }
     switch(action) {
       case "normal": break;
+      case "intro":
+        messageTrigger("아이디는 kyus, 비번은 1234, 내가 다 봤다.", 7000);
+        break;
       case "ula": ulaula(); break;
       case "bye": callByeAction(); break;
       case "init": init(); break;
       case "stop":
-        setMsgView(true);
-        setMsg(`내가 왜? 사랑은 움직이는거야!`);
-        clearTimeout(msgTimer.current);
-        msgTimer.current = setTimeout(() => {
-          setMsgView(false);
-          setMsg('');
-        }, 10000);
+        messageTrigger("내가 왜? 사랑은 움직이는거야!", 10000)
         break;
       case "hi":
-        setMsgView(true);
-        setMsg('안녕? 만나서 반가워^^');
+        messageTrigger("안녕? 만나서 반가워^^", 3000);
         callByeAction();
-        clearTimeout(msgTimer.current);
-        msgTimer.current = setTimeout(() => {
-          setMsgView(false);
-          setMsg('');
-        }, 3000);
         break;
       default:
-        setMsgView(true);
-        setMsg(`${action}? 내가 모르는 말이야..`);
-        clearTimeout(msgTimer.current);
-        msgTimer.current = setTimeout(() => {
-          setMsgView(false);
-          setMsg('');
-        }, 10000);
+        messageTrigger(`${action}? 내가 모르는 말이야..`, 10000);
     }
   }, [action, init, ulaula]);
 
