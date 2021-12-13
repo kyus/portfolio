@@ -3,7 +3,7 @@ import {AiOutlineClose} from "@react-icons/all-files/ai/AiOutlineClose";
 import {ifiveProject, atyProject} from "../data.json";
 interface listProps {
   name: string;
-  src: string;
+  src: string[];
   role: string;
   result: string;
   duration: string;
@@ -31,7 +31,7 @@ function ProjectList({title, list, toggle, openDetail}:{
           onTouchStart={() => toggle(p)}
           onClick={() => openDetail(p)}>
           <div className={"img-wrapper"}>
-            <img src={p.src} alt={p.name}/>
+            <img src={p.src[0]} alt={p.name}/>
             <div className={"tag-wrapper"}>
               {p.tag.map((tag, i) => <div key={i} className={"tag"}>{tag}</div>)}
             </div>
@@ -76,6 +76,12 @@ function Popup({data, close}: {data:listProps; close:Dispatch<boolean>}) {
           <div className={"info-wrapper"}>
             <div className={"info-title"}>[상세]</div>
             <div>{data.detail.split("\n").map((d, k) => <div key={k}>{d}</div>)}</div>
+          </div>
+          <div className={"info-wrapper"}>
+            <div className={"info-title"}>[Thumbs]</div>
+            <div className={"image-wrapper"}>{
+              data.src.map((img, key) => <img className={"img"} src={img} key={key} alt={img} />)
+            }</div>
           </div>
         </div>
       </div>

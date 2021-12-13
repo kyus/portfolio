@@ -147,10 +147,21 @@
     }
     .info-wrapper {
       line-height: 24px;
+      margin-bottom: 20px;
       .info-title {
         font-weight: 700;
       }
-      margin-bottom: 20px;
+      .image-wrapper {
+        margin: 10px 0;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .img {
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+        height: 200px;
+        object-fit: cover;
+      }
     }
   }
 }
@@ -397,6 +408,7 @@
         overflow: hidden;
         position: absolute;
         border: none;
+        object-fit: cover;
         transform: scale(2);
         top: 0;
         right: 0;

@@ -2,7 +2,7 @@
   "ifiveProject": [
     {
       "name": "window 호스팅 신청 자동화",
-      "src": "image/powershell.jpeg",
+      "src": ["image/powershell.jpeg"],
       "duration": "2012.2 - 2012.5",
       "role": "쉘스크립트 개발",
       "result": "기존 담당자들의 수동 세팅 대비 90% 이상 업무 효율 단축",
@@ -15,7 +15,7 @@
     },
     {
       "name": "허브웹 관리자 페이지 리뉴얼",
-      "src": "image/hubadm.png",
+      "src": ["image/hubadm.png"],
       "duration": "2013.2 - 2013.8",
       "role": "웹페이지 리뉴얼",
       "result": "웹호스팅 / 도메인 세팅 및 연장 누락 및 미답변 미처리 내역 누락 보완",
@@ -28,7 +28,7 @@
     },
     {
       "name": "모바일 빌더 프로그램 개발",
-      "src": "image/jqmobile.png",
+      "src": ["image/jqmobile.png"],
       "duration": "2013.8 - 2014.8",
       "role": "모바일 빌더툴 개발",
       "result": "자사 빌더 서비스의 모바일 전용 게시판 개발",
@@ -44,7 +44,7 @@
   "atyProject": [
     {
       "name": "아티 홈페이지 & 관리자 페이지 개발",
-      "src": "image/aty.jpg",
+      "src": ["image/aty.jpg"],
       "duration": "2015.2 - 2021.12",
       "role": "aty.kr 메인 사이트 개발 및 유지보수",
       "result": "신청 내역 pg 연동 및 고객문의, 에디터 프로그램 연동 및 도메인 세팅에 관련된 시스템 개발",
@@ -57,7 +57,7 @@
     },
     {
       "name": "아티 빌더 엔진 개발",
-      "src": "image/edit.jpg",
+      "src": ["image/edit.jpg"],
       "duration": "2015.11 - 2021.12",
       "role": "퍼블리싱 - ( html / css ) / 신규 개체 개발 / bugFix",
       "result": "bugFix 및 신규 기능 개발.",
@@ -70,7 +70,7 @@
     },
     {
       "name": "딜리어스 어플리케이션 가맹점 프로그램",
-      "src": "image/dp.jpg",
+      "src": ["image/dp.jpg"],
       "duration": "2018.1 - 2021.12",
       "role": "백엔드 / 프론트엔드 개발",
       "result": "가맹점별 앱 메인 화면 인트로 구성 및, 입점 가게 등록 삭제 매니징 프로그램 개발",
@@ -83,7 +83,7 @@
     },
     {
       "name": "사내 메일 서버 구축",
-      "src": "image/centos.png",
+      "src": ["image/centos.png"],
       "duration": "2018.10 - 2018.11",
       "role": "백엔드개발",
       "result": "자체 메일 서버 구축",
@@ -96,7 +96,7 @@
     },
     {
       "name": "NRF 사업공고 등록 CMS 프로그램 개발",
-      "src": "image/nrf.png",
+      "src": ["image/nrf.png"],
       "duration": "2019.8 - 2020.4",
       "role": "API 및 DB 연동 개발 / 프론트엔드",
       "result": "R&D 프로젝트 완수",
@@ -109,7 +109,7 @@
     },
     {
       "name": "딜리어스 어플리케이션 사장님 프로그램",
-      "src": "image/dillyus.jpg",
+      "src": ["image/dillyus.jpg"],
       "duration": "2019.11 - 2021.12",
       "role": "백엔드 / 프론트엔드",
       "result": "사장님 가게 관리 프로그램 개발",
@@ -122,7 +122,7 @@
     },
     {
       "name": "오픈마켓 연동 프로그램 개발",
-      "src": "image/hanaon.jpg",
+      "src": ["image/hanaon.jpg"],
       "duration": "2020.8 - 2021.4",
       "role": "백엔드 / 프론트엔드",
       "result": "오픈마켓 등록 연동",
@@ -135,20 +135,20 @@
     },
     {
       "name": "허브웹 FTP 클라이언트 프로그램 개발",
-      "src": "",
+      "src": ["image/hubuploader.jpg"],
       "duration": "2021.5 - 2021.6",
       "role": "ftp 클라이언트 개발",
       "result": "허브업로더 프로그램 개발",
       "detail": "기존에 activeX 를 활용한 웹 ftp 프로그램을 제공 중에 있었는데, explorer 서비스 종료에 따라 사용자들이 더이상 사용하기 어려운 환경이 되어 가고 있었고, 이에 따라 관련 기능을 수행하는 ftp 프로그램을 별도로 만들기로 결정 하였습니다.\nelectron 을 활용하여 서비스를 구현 하였는데, 당사의 이미지 호스팅 서버가 euckr 환경의 오래된 구식 서비스 였습니다.\n이에 따라 기본 utf8 환경의 javascript 에서 한글이 제대로 표시되지 않는 이슈가 있었고, 서버 환경의 ftp 데몬 언어셋을 utf8로 변경해도 관련 이슈가 해결되지 않는 상황이었습니다.\n단위 테스트를 진행하며, ftp 모듈에서 서버 데이터를 받아온후 변환중에 문제가 되는것을 확인 하였고,\n원본 데이터 소스를 확인하여 ftp 모듈을 fork 하여 당사 서비스에 맞는 내용으로 수정후 배포 하였습니다.\n문제가 해결된 줄 알았으나, 실제 배포전 마지막 단위 테스트에서 또다른 문제가 발생하였습니다.\n동일한 이름의 한글 파일이 중복해서 업로드 되는 현상이었습니다. 이를 해결하기 위해 동일한 파일명의 차이점을 확인하게 되었고,\n바이너리 데이터를 확인하니 두 파일의 길이가 서로 다른것을 알게 되었습니다.\n왜 이런 현상이 발생되는지가 전혀 예상이 되지 않는 상황에서 이에 대한 관련 내용을 며칠간 찾은 끝에 이것이 맥과 윈도우의 한글 구조 표준에 차이에 의해 발생되는 현상이라는것을 알게 되었습니다.\n[NFC (Normalization Form Canonical Composition) / NFD (Normalization Form Canonical Decomposition)]\n이를 통해 업로드시 파일명을 NFC 로 강제로 변경하여 업로드 하도록 프로그램을 개선하였으며, 별다른 큰 이슈 없이 현재까지 서비스를 원활히 제공 하고 있습니다.",
       "bg": {
-        "src": "",
-        "type": ""
+        "src": "image/hubuploader.jpg",
+        "type": "img"
       },
       "tag": ["react", "electron"]
     },
     {
       "name": "fundeal.kr 서비스 소개 웹사이트 개발",
-      "src": "image/fundeal.jpg",
+      "src": ["image/fundeal.jpg"],
       "duration": "2021.8 - 2021.8",
       "role": "프론트엔드",
       "result": "웹사이트 반응형 대응",
@@ -161,14 +161,14 @@
     },
     {
       "name": "휴먼케어 프로젝트 - 시연용 어플리케이션 개발",
-      "src": "",
+      "src": ["image/humancare.jpg"],
       "duration": "2021.8 - 2021.11",
       "role": "백엔드 / 프론트엔드",
       "result": "안드로이드앱 / 관리자 페이지 개발",
       "detail": "외부 시연 프로젝트로, 이 프로젝트를 통해 react native 에 입문 하였습니다.\n기존 react와 문법이 같아서 크게 어렵지 않게 개발이 가능했습니다.\n개발 당시 디자이너의 지원이 어려운 상황이었기에 antdesign 템플릿을 활용하여 관리자 페이지를 구성하였습니다.\npush message 발송시 이슈사항으로 인해 개발 도중 FCM 모듈을 다른것으로 대체하는 이슈가 있었지만\n큰 문제 없이 성공적으로 프로젝트를 마무리 지었습니다.",
       "bg": {
-        "src": "",
-        "type": ""
+        "src": "image/humancare.jpg",
+        "type": "img"
       },
       "tag": ["reactNative", "react", "antd", "nodejs", "express", "bash", "mysql", "notion"]
     }
