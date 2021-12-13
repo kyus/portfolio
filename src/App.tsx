@@ -54,7 +54,7 @@ function App() {
               </Link>
             </div>
             <div className={"nav-right"}>
-              <a className={"nav"} href={"https://github.com/kyus"} target={"_blank"}>
+              <a className={"nav"} href={"https://github.com/kyus"} target={"_blank"} rel={"noreferrer"}>
                 <AiOutlineGithub />
                 <div>github</div>
               </a>

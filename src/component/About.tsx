@@ -20,7 +20,7 @@ function About({setAction}:{setAction:Dispatch<string>}) {
   useEffect(() => {
     setAction('hi');
     setTimeout(() => setAction('normal'), 30);
-  }, []);
+  }, [setAction]);
   return (
     <div className={"card-wrapper"}>
       <div className={"card-header"}>
@@ -61,7 +61,7 @@ function About({setAction}:{setAction:Dispatch<string>}) {
           <DiSass size={20} title={"sass/scss"} onClick={link('https://sass-lang.com/')} />
           <DiCss3 size={26} title={"css"} onClick={link('https://developer.mozilla.org/ko/docs/Web/CSS')} />
           <SiDocker size={20} title={"docker"} onClick={link('https://www.docker.com/')} />
-          <SiNginx size={24} title={"nginx"} onClick={link('https://www.nginx.com/')} />
+          <SiNginx size={24} title={"nginx"} onClick={link('https://www.nginx.org/')} />
         </div>
       </div>
       <div className={"bubble"}>

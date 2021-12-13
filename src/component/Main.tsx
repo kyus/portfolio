@@ -1,4 +1,4 @@
-import React, {Dispatch, useState} from "react";
+import React, {Dispatch} from "react";
 import {Route, Routes} from "react-router-dom";
 import Portfolio from "./Portfolio";
 import About from "./About";

@@ -92,7 +92,7 @@ function Popup({data, close}: {data:listProps; close:Dispatch<boolean>}) {
 function ThumbnailBg({bg}:{bg:{src:string; type:string}}) {
   return (<>
     {bg.type === 'img' && <img className="bg" src={bg.src} alt={"bg"} />}
-    {bg.type === 'media' && <iframe className={"bg"} src={bg.src} />}
+    {bg.type === 'media' && <iframe className={"bg"} src={bg.src} title={"bg"} />}
   </>)
 }
 
